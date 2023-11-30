@@ -1,33 +1,19 @@
 import React from "react";
 
-function SearchBar() {
+function SearchBar({ onSort, onFilter }) {
+  const handleFilterChange = (event) => {
+    onFilter(event.target.value);
+  };
+
   return (
     <div>
-      <strong>Sort by:</strong>
-      <label>
-        <input
-          type="radio"
-          value="Alphabetically"
-          name="sort"
-          checked={null}
-          onChange={null}
-        />
-        Alphabetically
-      </label>
-      <label>
-        <input
-          type="radio"
-          value="Price"
-          name="sort"
-          checked={null}
-          onChange={null}
-        />
-        Price
-      </label>
-      <br />
+      <button onClick={() => onSort('alphabetically')}>Sort Alphabetically</button>
+      <button onClick={() => onSort('price')}>Sort by Price</button>
+
       <label>
         <strong>Filter:</strong>
-        <select onChange={null}>
+        <select onChange={handleFilterChange}>
+          <option value="all">All</option> 
           <option value="Tech">Tech</option>
           <option value="Sportswear">Sportswear</option>
           <option value="Finance">Finance</option>
